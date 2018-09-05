@@ -2,6 +2,7 @@
 #define LIST_H
 
 #include <iostream>
+#include <cassert>
 using namespace std;
 
 template <class T>
@@ -51,19 +52,32 @@ bool empty(const node<T>* head)
 template <class T>
 node<T>* copy_list(const node<T>* head, node<T>* & cpy)
 {
+    //initialize the copy to list
     init_head(cpy);
+    //since we know this list is empty, create first node with item from head of
+    //list being copied
     cpy = new node<T>(head->_item);
+    //create a current pointer to traverse the copy to list
     node<T>* currentCpy = cpy;
+    //create a current pointer from list being copied
     const node<T>* current = head;
+    //after first node has been copied, traverse to next node
     current = current->_next;
 
+    //before the current pointer reaches the end of the list or NULL, make copies
+    //of each node
     while(current != NULL)
     {
+        //point current pointer to newly created node
         currentCpy->_next = new node<T>(current->_item);
+        //traverse current pointer to point to newly added node
         currentCpy = currentCpy->_next;
+        //traverse current pointer from list being copied
         current = current->_next;
     }
 
+    //when each node in list is done being copied, return the pointer to the
+    //last node in copy list
     return currentCpy;
 }
 
@@ -78,6 +92,7 @@ node<T>* insert_head(node<T>* &head, T item)
     //point head pointer to new node
     head = newNode;
 
+    //return pointer pointing to newly added node
     return head;
 
 }
@@ -86,21 +101,28 @@ node<T>* insert_head(node<T>* &head, T item)
 template <class T>
 node<T>* insert_after(node<T>* &head, node<T>* after, const T& item)
 {
-    if(head == NULL)
+    //checking to see if head is null. If so, insert at head
+    if(empty(head))
     {
+        //call insert_head list function
         insert_head(head, item);
+        //point after to head since it's first and last node
         after = head;
 
+        //return pointer pointing to last node added
         return after;
     }
 
+    //condition to execute if list is not empty/contains at least one node
     else
     {
-        cout << "after: " << after->_item << endl;
-//        node<T>* newNode = new node<T>(item);
-//        after = newNode;
-//        after = after->_next;
+        //point last node in list to newly created node
+        after->_next = new node<T>(item);
+        //traverse after pointer to newly created node, which will be last node
+        //in list
+        after = after->_next;
 
+        //return pointer poitnitng to last node added
         return after;
     }
 }
@@ -109,7 +131,7 @@ node<T>* insert_after(node<T>* &head, node<T>* after, const T& item)
 template <class T>
 T delete_head(node<T>* &head)
 {
-    if(head != NULL)
+    if(!empty(head))
     {
         //create temporary pointer
         node<T> *temp = NULL;
@@ -120,7 +142,12 @@ T delete_head(node<T>* &head)
         //return item that temp is pointing to
         return temp->_item;
     }
-
+    else
+    {
+        cout << "List is empty" << endl;
+        exit(0);
+    }
+//    assert(head != NULL);
 }
 
 //print the list and return outs

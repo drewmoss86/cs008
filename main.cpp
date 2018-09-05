@@ -3,43 +3,51 @@
 #include "stack.h"
 #include "myqueue.h"
 
-void test_insert_after(node<int>* head, node<int>* tail, int item);
-
-
 using namespace std;
 
 int main()
 {
+    //Starting test of Stack
+    cout << "STARTING TEST OF STACK..." << endl;
     Stack<int> s;
 
     //Testing push
-    cout << "STACK: single push" << endl << endl;
+    cout << "STACK: testing push function" << endl;
     s.push(10);
     cout << s << endl;
     s.push(9);
-    cout << s << endl;
+    cout << s << endl << endl;
 
-    cout << "STACK: testing push w/ loop" << endl << endl;
+    cout << "STACK: testing push w/ loop + top function" << endl;
     for(int i = 0; i < 5; i++)
     {
         s.push(i);
     }
 
-    cout << "S: " << s << endl << endl;
-
-    //testing top function
+    cout << "S: " << s << endl;
     cout << "top: " << s.top() << endl << endl;
 
+    for(int i = 5; i < 10; i++)
+    {
+        s.push(i);
+    }
+
+    cout << "S: " << s << endl;
+    cout << "top: " << s.top() << endl << endl;
+
+
     //Testing pop
-    cout << "STACK: testing pop" << endl << endl;
+    cout << "STACK: testing pop" << endl;
     for(int i = 0; i < 5; i++)
     {
         cout << "Spop: " << s.pop() << endl;
 
     }
-    cout << endl;
 
-    //Recreating s for testing Big Three
+    cout << "\nS: " << s << endl;
+    cout << "top: " << s.top() << endl << endl;
+
+    //testing Big Three
     for(int i = 1; i < 10; i++)
     {
         s.push(i);
@@ -60,57 +68,90 @@ int main()
 
     cout << "U: " << u << endl << endl;
 
+    //testing self assignment
+    cout << "STACK: testing self assignment" << endl << endl;
+    u = u;
+
+    cout << "U: " << u << endl << endl;
+
+    Stack<int> v;
+
+    for(int i = 0; i < 5; i++)
+    {
+        v.push(i);
+    }
+
+    cout << "V: " << v << endl << endl;
+
+    //testing assignment operator with different size, non empty lists
+    u = v;
+
+    cout << "V: " << v << endl;
+    cout << "U: " << u << endl << endl;
+
     //TESTING QUEUE
     myQueue<int> myA;
 
     //Testing push
-    cout << "QUEUE: testing push" << endl << endl;
+    cout << "QUEUE: testing push" << endl;
     for(int i = 0; i < 20; i++)
     {
         myA.push(i);
     }
 
-    cout << "myA: " << myA << endl << endl;
-
-    //testing front function
-    cout << "QUEUE: testing front function" << endl << endl;
-
+    cout << "myA: " << myA << endl;
     cout << "front: " << myA.front() << endl << endl;
 
     //Testing pop
-    for(int i = 10; i < 20; i++)
+    cout << "QUEUE: testing pop" << endl;
+    for(int i = 0; i < 5; i++)
     {
         cout << "myA_pop: " << myA.pop() << endl;
     }
 
-    cout << "myA: " << myA << endl << endl;
+    cout << "\nmyA: " << myA << endl;
+    cout << "front: " << myA.front() << endl << endl;
 
-    //recreating myA for testing Big Three
+    //pop more times than nodes
+    for(int i = 0; i < 20; i++)
+    {
+        cout << "myA_pop: " << myA.pop() << endl;
+    }
+
+    cout << "\nmyA: " << myA << endl;
+    cout << "front: " << myA.front() << endl << endl;
+
+
+    //testing Big Three
     for(int i = 10; i < 20; i++)
     {
         myA.push(i);
     }
 
-    cout << "myA: " << myA << endl << endl;
+    cout << "myA: " << myA << endl;
+    cout << "front: " << myA.front() << endl << endl;
 
     //copy constructor
-    cout << "QUEUE: testing copy constructor" << endl << endl;
+    cout << "QUEUE: testing copy constructor" << endl;
     myQueue<int> myB(myA);
 
-    cout << "myB: " << myB << endl << endl;
+    cout << "myB: " << myB << endl;
+    cout << "front: " << myB.front() << endl << endl;
 
     //assignment operator
-    cout << "QUEUE: testing assignment operator" << endl << endl;
+    cout << "QUEUE: testing assignment operator" << endl;
     myQueue<int> myC;
     myC = myB;
 
-    cout << "myC: " << myC << endl << endl;
+    cout << "myC: " << myC << endl;
+    cout << "front: " << myC.front() << endl << endl;
 
     //testing self assignment
-    cout << "QUEUE: testing self assignment" << endl << endl;
+    cout << "QUEUE: testing self assignment" << endl;
     myC = myC;
 
     cout << "myC: " << myC << endl << endl;
+    cout << "front: " << myC.front() << endl << endl;
 
     return 0;
 }
