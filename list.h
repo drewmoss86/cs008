@@ -97,12 +97,9 @@ node<T>* insert_after(node<T>* &head, node<T>* after, const T& item)
     else
     {
         cout << "after: " << after->_item << endl;
-        node<T>* newNode = new node<T>(item);
-        cout << "newnode: " << newNode->_item << endl;
-        cout << "after: " << after->_item << endl;
-        after->_next = newNode;
-        after = after->_next;
-        cout << "after: " << after->_item << endl;
+//        node<T>* newNode = new node<T>(item);
+//        after = newNode;
+//        after = after->_next;
 
         return after;
     }

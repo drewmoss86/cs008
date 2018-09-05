@@ -27,6 +27,9 @@ int main()
 
     cout << "S: " << s << endl << endl;
 
+    //testing top function
+    cout << "top: " << s.top() << endl << endl;
+
     //Testing pop
     cout << "STACK: testing pop" << endl << endl;
     for(int i = 0; i < 5; i++)
@@ -61,33 +64,53 @@ int main()
     myQueue<int> myA;
 
     //Testing push
-    cout << "myQUEUE: testing push" << endl << endl;
-//    for(int i = 0; i < 20; i++)
-//    {
-        myA.push(1);
-        myA.push(2);
-//    }
+    cout << "QUEUE: testing push" << endl << endl;
+    for(int i = 0; i < 20; i++)
+    {
+        myA.push(i);
+    }
 
     cout << "myA: " << myA << endl << endl;
 
-//    //Testing pop
-//    for(int i = 10; i < 20; i++)
-//    {
-//        cout << "myA_pop: " << myA.pop() << endl;
-//    }
-//    cout << endl;
+    //testing front function
+    cout << "QUEUE: testing front function" << endl << endl;
 
-//    //recreating myA for testing Big Three
-//    for(int i = 10; i < 20; i++)
-//    {
-//        myA.push(i);
-//    }
+    cout << "front: " << myA.front() << endl << endl;
 
-//    myQueue<int> myB(myA);
+    //Testing pop
+    for(int i = 10; i < 20; i++)
+    {
+        cout << "myA_pop: " << myA.pop() << endl;
+    }
 
-//    cout << "myB: " << myB << endl << endl;
+    cout << "myA: " << myA << endl << endl;
 
+    //recreating myA for testing Big Three
+    for(int i = 10; i < 20; i++)
+    {
+        myA.push(i);
+    }
 
+    cout << "myA: " << myA << endl << endl;
+
+    //copy constructor
+    cout << "QUEUE: testing copy constructor" << endl << endl;
+    myQueue<int> myB(myA);
+
+    cout << "myB: " << myB << endl << endl;
+
+    //assignment operator
+    cout << "QUEUE: testing assignment operator" << endl << endl;
+    myQueue<int> myC;
+    myC = myB;
+
+    cout << "myC: " << myC << endl << endl;
+
+    //testing self assignment
+    cout << "QUEUE: testing self assignment" << endl << endl;
+    myC = myC;
+
+    cout << "myC: " << myC << endl << endl;
 
     return 0;
 }

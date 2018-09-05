@@ -13,7 +13,7 @@ public:
     ~myQueue()
     {
         delete_all(_head);
-        _tail = NULL;
+        _tail = _head;
     }
     myQueue(const myQueue<T>& other)
     {
@@ -35,6 +35,19 @@ public:
 
     void push(T item)
     {
+//        if(_head == NULL)
+//        {
+//            insert_head(_head, item);
+//            _tail = _head;
+//        }
+
+//        else
+//        {
+//            node<T>* newNode = new node<T>(item);
+//            _tail->_next = newNode;
+//            _tail = _tail->_next;
+//        }
+
         insert_after(_head, _tail, item);
     }
     T pop()
