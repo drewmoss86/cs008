@@ -1,62 +1,34 @@
 #include <iostream>
 #include <cstring>
-//#include "token.h"
-#include "state_machine_functions.h"
-#include "constants.h"
-//#include "stokenizer.h"
+#include <iomanip>
+#include "token.h"
+//#include "state_machine_functions.h"
+#include "stokenizer.h"
 
 using namespace std;
-//const int SIZE = 100;
 
-//bool get_token(char block[], int _table[][MAX_COLUMNS], int &pos, string &token, int start_state);
 int main()
 {
-//    char cSentence[SIZE];
-//    string sentence = "3.14";
-//    strcpy(cSentence, sentence.c_str());
-//    int n = 0;
-
-    int state_table[MAX_ROWS][MAX_COLUMNS];
-
-    init_table(state_table);
-
-    //doubles
-    mark_fail(state_table,0);
-    mark_success(state_table,1);
-    mark_fail(state_table, 2);
-    mark_success(state_table,3);
-
-    mark_cells(0, state_table, DIGITS, 1);
+    char s[] = "it was the night of october 17th. pi was still 3.14.";
+    STokenizer stk(s);
+    Token t;
 
 
-    print_table(state_table);
+    //The all too familiar golden while loop:
+    stk>>t;
+    while(stk.more())
+    {
+     //process token here...
+     cout<<setw(10)<<t.type_string()<<setw(10)<<t<<endl;
 
-//    get_token(cSentence, table, n, sentence, 0);
+
+     t = Token();
+     stk>>t;
+    }
+
+
 
     return 0;
 }
 
 
-//bool get_token(char block[], int _table[][MAX_COLUMNS], int &pos, string &token, int start_state)
-//{
-//    if(start_state != -1)
-//    {
-//        char ch;
-//        while(block[pos] != '\0')
-//        {
-
-//            ch = block[pos];
-//            cout << "Char: " << ch << ' ' << _table[start_state][ch] << endl;
-//            token = token + ch;
-
-//            pos++;
-//            start_state++;
-//        }
-
-//        return true;
-
-//    }
-
-//    return false;
-
-//}

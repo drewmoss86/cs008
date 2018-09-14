@@ -6,10 +6,12 @@ CONFIG -= qt
 SOURCES += \
         main.cpp \
     token.cpp \
-    stokenizer.cpp
+    stokenizer.cpp \
+    state_machine_functions.cpp
 
 HEADERS += \
     token.h \
     stokenizer.h \
     state_machine_functions.h \
-    constants.h
+    constants.h \
+    state_machines.h

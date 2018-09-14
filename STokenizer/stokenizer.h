@@ -2,12 +2,13 @@
 #define STOKENIZER_H
 
 #include <iostream>
-#include "token.h"
+#include <cassert>
 
-//global constants
-const int MAX_COLUMNS = 256;
-const int MAX_ROWS = 30;
-const int MAX_BUFFER = 100;
+#include "token.h"
+#include "constants.h"
+#include "state_machine_functions.h"
+
+
 
 using namespace std;
 
@@ -27,9 +28,6 @@ public:
     //set a new string as the input string
     void set_string(char str[]);
 
-    bool get_token(int start_state, string& token);
-    //---------------------------------
-
 private:
     //create table for all the tokens we will recognize
     //                      (e.g. doubles, words, etc.)
@@ -37,7 +35,7 @@ private:
 
     //extract the longest string that match
     //     one of the acceptable token types
-//    bool get_token(int start_state, string& token);
+    bool get_token(int start_state, string& token);
     //---------------------------------
     char _buffer[MAX_BUFFER];       //input string
     int _pos;                       //current position in the string

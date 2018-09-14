@@ -1,13 +1,14 @@
-
 #ifndef TOKEN_H
 #define TOKEN_H
 
 #include <iostream>
-
+//#include "state_machine_functions.h"
+#include "constants.h"
 using namespace std;
 
 class Token
 {
+
 public:
     Token();
     Token(string str, int type);
