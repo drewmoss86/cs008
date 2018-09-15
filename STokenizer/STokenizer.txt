@@ -1,0 +1,602 @@
+
+Let's chat on Hangouts!
+hey
+hi
+thx for your help so far 
+awesome, i hate typing on phone.
+yeah same, i was actually going to ask you but wasn't sure if you were out
+so are you almost done?
+so i did the same thing for my default constructor, but i'm getting an error undefined reference to 'STokenizer::_table
+have you ever gotten that error
+oh
+you need to
+haha kinda but i'm having some errors so i'm going back and looking at what i did wrong lol
+wait
+lemme paste the code
+its a real simple fix
+paste this in your stokenizer.cpp
+int STokenizer::_table[MAX_ROWS][MAX_COLUMNS];
+you need to declare the _table like a global constant in your .cpp file
+since we're using it for the next project i want to make sure everything is workign correctly
+it's because the _table is a 'static' variable
+OOOH
+once that table is created one time in your cpp
+it is shared be all objects of STokenizer class
+it's somewhat like a global class variable
+does it fix your error?
+yes!
+haah
+yea, i got stuck on that for HOURS too until i went on and irc c++ help channel and asked for help
+hahaha
+cool
+did he tell us to do that in class?
+i definitely don't remember that
+not in class but
+it's actually in the assignment description...
+somewhere it says
+'In the stokenizer.cpp, you must reintroduce the _table static member variable once again:
+'
+yea.....
+oops lol
+ok but now my make_table also shows undefined ref
+is there something for that?
+what's the exact error?
+undefined reference to STokenizer::make_table(int (*)[256])
+so you declared int STokenizer::_table[MAX_ROWS][MAX_COLUMNS]; in the top of your stokenizer.cpp
+?
+yeah
+and you are calling the table with the correct parameter signatures?
+that error is happening in the constructor?
+yeah
+STokenizer::STokenizer()
+{
+_pos = 0;
+_buffer[_pos] = '\0';
+make_table(_table);
+} 
+this is what i have now in the default constructor
+the undefined ref for _table was fixed
+but now the make_table one appeared
+u made sure that in your .cpp
+you didn't use static right?
+in the declaration for the _table
+just STokenizer::_table
+i mean just int STokenizer::_table
+and not 'static int STokenizer::_table'
+can you try to copy the declaration in your header file to your implmenetation
+to make sure both function signature matches?
+and then save all
+nvm i found it
+hahaha
+it was a stupid mistake
+oh what happened
+the STokenizer:: got deleted somehow
+in my definition
+??
+lol
+when you call get_token, what is the string token that you input
+my params are
+int start_state, std::string& token
+the starting state
+and the normal standard string
+so when the get_token is succcessful it will change the string
+if it's succcesfull, i will insert that into the Token class object
+so get token return a normal string
+
+and then i use that normal string to insert into the Token object with the type of state
+so for your extraction you have like if(s.get_token(ALPHA_START,t.token_str()) return t.token_str()
+i have this
+
+std::string token_string;
+if(s.get_token(STATE_ALPHA, token_string)) {
+    t = Token(token_string, STATE_ALPHA);
+}
+else { 
+    t = Token(); 
+    s._pos++;
+}
+where t is the Token& t parameter
+
+does that make sense?
+yeah
+and i think i asked you this already but is your alpha just -- const char ALPHA[] = "abc...ABC..."
+yea
+just
+const char ALPHA[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+i'm going to pick up my daughter but are you going to be online later
+you're almost done huh?
+i'll be avail on my cell if i'm out
+kk
+but yea im done already
+jus tneed to do comments
+ok perfect
+thx again
+np
+oh
+you're on
+but yeah for the extraction operator do we overload it like 
+s >> t; 
+return s;
+for the STokenizer& operator>>
+i just did
+
+if(s.get_token(){}
+else{}
+and then
+return s;
+
+oh got it...cuz you know like before when we overloaded extraction operator it'd be something like input >> D.x >> D.y; return input;
+something like that
+when it's an istream
+wasn't that overloading the addition operator?
+when adding two objects you need to access the member variables. but anyways
+this one is diff.
+it's actually the "insertion" operator
+since it's inserting a string into target token
+ooh right
+i dunno why the professor calls it extraction
+the extraction operator is the <<
+diff direction
+like using cout << 
+yeah i was looking over something and i saw this  friend istream &operator>>( istream &input, Distance &D ) { input >> D.feet >> D.inches; return input;     
+extracting text to cout
+so that's why i was wondering
+yeah you're right insertion
+that's for chain inserting member variables
+yeah
+but actually, maybe im wrong with the >> << op names
+o well
+it's ok i get it
+the other thing is you have multiple if statements
+right?
+hmm, i got multiple if and else if
+but multiple if is the same
+like 
+if(s.get_token(ALPHA) 
+if(s.get_token(DIGITS) 
+..
+i just wanted to get rid of the spaces when doing if and else if
+etc
+yea, multiple if's works too
+but
+you have to remember
+doing a else on the last if statement
+so you can advance ++pos
+yeah
+i did if..if..if.. and last one is else
+oh and this is probably easy but how did you implement the set_string
+is that just setting the character arra
+array* to a string?
+just create index=0
+while(other_str[index] != '\0')
+_buffer[index] = other_str[index];
+++index
+and when it ends
+what's the point of that one again?
+remember to put in the NUL char at the end
+_buffer[index] = '\0';
+at the end
+its just
+so you can manually set the string buffer after creating the object
+normally, you set the string buffer during instantiation 
+such as 
+STokenizer stk(buffer_string);
+but if you want to change the buffer string, then you can use the set_string to change it
+and also reset pos to 0
+hmm ok trying to think about this one
+its bascially the same as your overloarded constructor
+except without callilng make_map
+ok so like in his example output
+is his s[] example being set using set_string
+or like in our example when is set_string being used
+where?
+in the assignment descriptoin at the end?
+he didn't use the set_string()
+oh no
+he just used the constructor to set the string
+i just mean in general
+oh
+when is that being used
+sorry
+well, for his example, we don't need to use it.
+it's just there in case...we want to manually change the buffer
+without creating new objects
+so imagine
+you create stk1(string1)
+and you extracted all of it
+and now you have string2 you want to test
+but you don't want ot create a new stk2
+but keep using the stk1 object
+so you would use stk1.set_string(string2)
+and continue to extract string2 using stk1
+ooooh
+got got got it
+ok thx
+how are your test cases
+are you testing each individual function?
+i made test functions for each state function
+epsecially for the get_function in the state function
+and test it with as many different combinations of strings as possible
+like empty string
+"." just a period
+or ".3"
+or "0.3"
+or "3.0.14"
+and various combinations for alpha and punct and etc
+well, to make it easier
+like
+you can use assert functions
+say
+get_token inputed a string of "0.3.14"
+and it's supposed to return a string of "0.3"
+so i make assert statiosn like
+assert(string_token == "0.3");
+ooh right
+that way assert statements can check that the output is correct and i dont need to look at the output text
+yeah i never used assert before this class
+but that's a good idea
+assert just basically tests a boolean expression
+did we use them in prof Leon's class?
+no, he didnt
+i learned it in my python class
+so since you can assert with any boolean expression
+you can also test for pos changes
+like if the pos inputd is 0
+and you epxect the position to return 3
+then
+assert(_pos == 3);
+and if it _pos returned is not 3
+then the test funciton will abort and your program fails, hence test fails
+cool
+whats good is that
+if you have multiple asserts
+like over 100 asserts
+whenever an asssert fail
+it will tell you which line
+and which assert
+and what condition it failed at
+yeah i kinda used it in the queue/stack/airport assignment
+but yeah that's a good idea too
+i feel like these stuff
+like testing functions and debugging
+should be taught at cs3a
+but leon is so eh
+lol
+yeah
+i feel like it's so important
+but we didn't debug that much
+he didn't even show us really how to use debugger in cs2
+which i think should be covered
+i know right!
+since that's an intro class
+fundamentals
+lol
+learned how to debug in my python class too...
+lolz
+did you take python at pcc?
+kinda stupid how i learned more practical c++ stuff in my PYTHON class
+lol
+yea, i took it at summer
+did you take CIS python?
+or the CS one
+cs one?
+cs one*
+ooh with  Sekhar ?
+yea
+damn yeah i couldn't take that one
+because of the time
+do you like python over c++?
+i did some on my own
+it's so differnt
+initially, i disliked python because the language was TOO loose
+way more loose
+by loose, i mean you can do whatever the fuck you want
+yeah lol
+but it's so much easier
+no {}
+indentation only
+its not just that
+you don't have to declare variables
+lol
+its so much faster to get stuff done
+it jsut kknows it's an int
+like you can create one function
+lol
+and it will ACCEPT any data types
+yaeh
+yeah*
+no need for checking if it's a int or double
+haha
+or whatever
+but, python is a  lot slower
+so there's that though
+i like java > c++ and python
+really
+it's not as loose, but you don't have to worry about pointers
+you like all that syntactic bs in java?
+and memory anagement as much
+yeah it's a little annoything
+annoying
+but not too bad
+i mean i've only just started
+but i like it so far
+what ide are you using for java?
+eclipse
+i was thinking about using it for c++ too
+but i didn't  want to risk it haha
+is eclipse's performance slow to you?
+my java class is a lot slower since it's CIS
+everytime i try to load it in windows
+it takes a few seconds to load
+really?
+ooh yeah
+yeah
+i know what you're talking about
+compared to qt
+yea, it just feels clunky
+it is a little compared to visual studios or qt
+but i think it's cuz there's a lot more stuff packed in there
+but it is slower for sure
+hey for your  Token::type_string()
+that's just to output the different types right?
+like when it's alpha
+or punctuation or space
+yea
+just output like for example
+if your int _type 0
+correspond to DOUBLE
+then output "DOUBLE"
+or "NUMBER"
+however you want to call it
+i just used a switch statement 
+switch statement to set the correct string type
+and then return the string
+or an if/else statemnet works too
+if(STATE_DOUBLE) {set string to "DOUBLE"}
+return string
+haha yeah i was debating between switch and ifelse
+switch only works with int anyways or single char
+and since the states are const ints
+it looks more neat to use a switch
+the if/else statements has too much parens and bracket clutter
+when looking at it..
+yeah
+unless python, which has no clutter
+!
+hahaha
+yeah
+no brackets
+for your insertion operator >> did you just do outs << t._token << t_type ?
+yea
+i think
+hmm
+i think i did
+outs << "|" + t.token_str() + "|";
+and return outs;
+i thikn the purpose of that operator is just ti output the string with the bars
+so that in the main program, you don't have to do the bars all the time
+i didn't output the type
+that should be called seperately by the user
+ooh
+if the user only wanted to output the string, then they can do cout << t;
+and if they want more info they can always do
+cout << t.type_str()
+right it's output by user in his example
+hey man are you in class right now?
+not in class yet
+wassup
+for your get_token function, do you have a while loop inside?
+which one? state machine's get token or stokenizer get token?
+stokenizer
+for my stokenizer
+i just had
+well
+i wrapped my state_machine's get_token in it's own namespace
+so what i did for stokenizer is
+return state_machine::get_token(start_state, token);
+basically my stokenizer's get token calls the state machine's get token
+and that's all
+no other statements but return statement
+oh interesting
+so if the state machine's get token succeeeds, it returns succeed and all the reference values get changed
+then how does your state_machine's get token
+is that just a while loop
+or, like the professor say,
+you can implement the entire state_machine's get token into your stokenizer
+but that's just repeating the code imo
+for my state machine
+i jsut had a while loop
+while it's not -1
+until conditions:
+input[_pos]  > -1
+well, wait
+lemme up my code up
+cool
+so yea, check if the char is greater than -1 first
+and check if the char has reached nul
+input[_pos] != '\0'
+checking grater than negative ones prevents segfault on unicode characters
+because characters beyond 255 int will become -1
+that's what the professor says
+and i loop also until
+_table[state][input[_pos]]] != -1 or something like that
+so basically check if the input string has reached end
+ok yeah
+i have that
+but i didn't check char
+the checking character is important only when encountering non-ascii characters
+ok cool that helps
+if it encounter non-ascii, then get_token will fail, which is what yo uwant
+and prevents seg fault
+then in the loop do you just add the character to the token
+like token = token+ch;
+until it hits a fail state
+on which loop?
+the whle loop?
+get_token
+hmm
+whilie
+in state machine
+cuz you're building the token 
+when i hit current state && next_state
+so if current succeed
+and next fails
+well lemme rewrite what i typed
+ok
+when (is_success(current_state) && (all possible fail states))
+such as 
+next char '\0' is fail
+or next state is -1
+or next success state is fail
+i have something like
+next_success_state and look at the next state and its success value
+and basically did !next_success_state
+so it all becomes true
+on current_sucess & (true values for next char == '\0' || next state == -1 || !next_succes)
+and then when that condition is true && true
+i log the current position as successful
+and when that while loop is done, i just create a new token from old starting position to new success pos
+so while loop looks at the current state
+and the next possible char, states, success
+and that combintion will determine if i should log a sucesss pos
+because the input string will have to FAIL or END at some point
+and if you do reach the FAIL or END, that means the previous characters are already successful
+if the prevoius chars are not succesful, you won't reach the end or next fail state
+it'll just abort at -1
+see?
+that makes sense
+i'm trying to wrap my head around it all
+so for your state machine header
+you just built a state machine for each thing right - double, alpha, etc
+otherwise you'd have to do it within the STokenizer
+yea, you need to set the adjacency values for the table
+and then use the operator to do the if else stuff
+the make_table
+should set all double, space, punctation adjacency values
+ok and when you're setting the adjacency values, you're just using the mark_fail, mark_success, and mark_cells
+right?
+use mark fail and mark success to mark column 0 and row whaterver to sucesss/fail
+if you go on youtube, and find a adjacency table and the corresponding graphs
+it'll make a lot of sense
+oh cool ok i'll definitely do that
+sorry for all the questions, i feel like this concept is kinda hard for me to understand
+for the adjacnecy table?
+adjacency*
+state machine
+oh,
+in general
+i've taken discrete math last semester...and initially i thought that class was useless
+but its quite helpful
+hmm what is that??
+taught me all about adjacency tables
+matrix
+oooh
+hmm
+at pcc?
+and booleans and all combinations and pratical problems
+yea, at pcc
+is that necessary for transfer?
+masters
+for me yea
+and im glad i took it
+the professor was really nice
+and INTERACTIVE
+most interactive professor ever
+hahaha
+nice
+but also hella easy on tests
+what about linear algebra?
+havent taken it yet
+some schools dont req for it
+some schools do
+depends
+yeah
+i heard
+you're targeting csu pomona, fullerton?
+right?
+fullterton and long beach
+pomona third
+cause pomona has more reqs
+like linear algebra
+and some other bs class
+yeah
+i was a tech recruiter though and lot of ppl like csu pomona or slo
+so while im waiting for application approval, i guess ill take those reqs and apply for cal poly during the interval
+managers i mean
+but i'm sure any is ok
+since it's masters
+just my experience
+hmm, yea, i want to get into that too but i dont want to waste another year or so
+just to try to apply for an impacted major at cal poly
+and csu northridge 
+yeah cool
+northbridge is so far bro!
+fullerton is just 30 mins for me
+yeah yeah lol i know
+i was just remembering the candidates i placed and manager's feedback
+oh one other question on adj matrices
+the success and fail is only in the column 0
+right?
+like under mark_success
+or mark_fail
+it's just column 0
+not to fill the entire row
+yea, column 0 holds all the fail/sucess values for that given row
+cool
+so if you hit state 2
+which is row 2
+and row 2 at column 0 has fail
+and when you call _table[2][0]
+it wil return false
+or fail however you want to call it
+got it
+and column 1 - 255 just takes you to a row (or state)
+right
+but remember -1 values if fail, and don't try to access sucess at _table[-1][0]
+otherwise you might get seg fault
+or nasty bug
+_table[-1][0] will give true
+_table[-1][0] or false cause its garbage values
+right
+so if you reach state -1, don't use success lookup
+so if you do some tests on the get_token
+and if you see sometimes it fails
+and sometimes it success
+might be accesing garbage values
+ok good to know
+also for get_token in your state machine
+when do you return true
+like after your while loop
+i return true when i get a success pos
+so in my if(success && (series of fail states that return true condition)
+aahh right
+log success and set sucess variable to true
+default suceess variable to false
+and at end return sucess variable
+so if the whiile loop doesnt encounter a sucess, sucess default at false
+and returns false
+right
+if while loop encounter success, log pos and set success
+ok cool
+let me think about this for a bit
+haha thanks for the info
+do you have class today still?
+or was that in the morning
+from 5 to 8
+sighs
+stupid evening class
+ooh man 
+i didn't even know they had friday evening classes
+cause the professor has a day time job
+ah
+and i guess his job ends at 3 or 4 ish?
+makes sense
+what is your long-term goal?
+to become a sft eng
+and hence sat is 1-4 instead of 5-8
+sighs
+or stay in academia
+software eng
+i hate school
+??
+lolol

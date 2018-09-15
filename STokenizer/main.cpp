@@ -19,7 +19,7 @@ int main()
     while(stk.more())
     {
      //process token here...
-     cout<<setw(10)<<t.type_string()<<setw(10)<<t<<endl;
+     cout<<setw(10)<< t.type_string()<<setw(10)<< t<<endl;
 
 
      t = Token();

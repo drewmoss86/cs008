@@ -32,16 +32,15 @@ void mark_fail(int _table[][MAX_COLUMNS], int state)
 //true if state is a success state
 bool is_success(int _table[][MAX_COLUMNS], int state)
 {
+//    cout << "state: " << state << endl;
+//    cout << _table[state][0] << endl;
     if(_table[state][0] == 1)
     {
+//        cout << "true" << endl;
         return true;
     }
-
-    if(_table[state][0] == 0)
-    {
-        return false;
-    }
-
+//    cout << "false" << endl;
+    return false;
 }
 
 //Mark a range of cells in the array.
