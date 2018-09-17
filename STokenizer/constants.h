@@ -16,7 +16,7 @@ using namespace std;
 
 const char ALPHA[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const char DIGITS[] = "0123456789";
-const char PUNCT[] = "!\"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~";
+const char PUNCT[] = "!\"$%\'()*+,-./:;<=>?@[\\]^_`{|}~";
 const char SPACES[] = " ";
 
 #endif // CONSTANTS_H

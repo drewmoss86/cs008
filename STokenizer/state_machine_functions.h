@@ -18,7 +18,7 @@ using namespace std;
 //Global
 const int MAX_ROWS = 30;
 const int MAX_COLUMNS = 256;
-const int MAX_BUFFER = 1000;
+const int MAX_BUFFER = 100;
 
 //Fill all cells of the array with -1
 void init_table(int _table[][MAX_COLUMNS]);
