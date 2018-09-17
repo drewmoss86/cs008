@@ -1,3 +1,13 @@
+/******************************************
+ * Name: Andrew Moss
+ *
+ * Date: 9/17/2018
+ *
+ * Class: CS 008
+ *
+ * Assignment: STokenizer
+ *
+ ******************************************/
 #ifndef STOKENIZER_H
 #define STOKENIZER_H
 
@@ -7,8 +17,6 @@
 #include "token.h"
 #include "constants.h"
 #include "state_machine_functions.h"
-
-
 
 using namespace std;
 

@@ -1,9 +1,33 @@
+/******************************************
+ * Name: Andrew Moss
+ *
+ * Date: 9/17/2018
+ *
+ * Class: CS 008
+ *
+ * Assignment: STokenizer
+ *
+ ******************************************/
 #include <iostream>
 #include <iomanip>
 #include "token.h"
 
 using namespace std;
-
+/**********************************************************
+*
+*  Runway(): Class Runway
+*  _________________________________________________________
+*  This constructor initializes the landing time, landing time left,
+*     takeoff time, takeoff time left
+*  _________________________________________________________
+*  PRE-CONDITIONS
+*  l : integer representing time it takes to land
+*  t : integer representing time it takes to takeoff
+*
+*  POST-CONDITIONS
+*  This function initializes landing time to t and takeoff time to t.
+*     landing time left and takeoff time left to 0
+***********************************************************/
 Token::Token()
 {
     _token = "";

@@ -13,5 +13,4 @@ HEADERS += \
     token.h \
     stokenizer.h \
     state_machine_functions.h \
-    constants.h \
-    state_machines.h
+    constants.h

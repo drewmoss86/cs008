@@ -1,3 +1,13 @@
+/******************************************
+ * Name: Andrew Moss
+ *
+ * Date: 9/17/2018
+ *
+ * Class: CS 008
+ *
+ * Assignment: STokenizer
+ *
+ ******************************************/
 #ifndef TOKEN_H
 #define TOKEN_H
 

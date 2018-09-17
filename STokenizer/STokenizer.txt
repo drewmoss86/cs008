@@ -167,10 +167,12 @@ i did if..if..if.. and last one is else
 oh and this is probably easy but how did you implement the set_string
 is that just setting the character arra
 array* to a string?
-just create index=0
+just create 
+index=0
 while(other_str[index] != '\0')
 _buffer[index] = other_str[index];
 ++index
+
 and when it ends
 what's the point of that one again?
 remember to put in the NUL char at the end
@@ -179,7 +181,8 @@ at the end
 its just
 so you can manually set the string buffer after creating the object
 normally, you set the string buffer during instantiation 
-such as 
+such as
+ 
 STokenizer stk(buffer_string);
 but if you want to change the buffer string, then you can use the set_string to change it
 and also reset pos to 0
@@ -217,7 +220,8 @@ are you testing each individual function?
 i made test functions for each state function
 epsecially for the get_function in the state function
 and test it with as many different combinations of strings as possible
-like empty string
+like 
+empty string
 "." just a period
 or ".3"
 or "0.3"
@@ -227,10 +231,12 @@ well, to make it easier
 like
 you can use assert functions
 say
+
 get_token inputed a string of "0.3.14"
 and it's supposed to return a string of "0.3"
 so i make assert statiosn like
 assert(string_token == "0.3");
+
 ooh right
 that way assert statements can check that the output is correct and i dont need to look at the output text
 yeah i never used assert before this class

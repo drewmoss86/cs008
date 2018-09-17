@@ -1,13 +1,24 @@
+/******************************************
+ * Name: Andrew Moss
+ *
+ * Date: 9/17/2018
+ *
+ * Class: CS 008
+ *
+ * Assignment: STokenizer
+ *
+ ******************************************/
 #ifndef STATE_MACHINE_FUNCTIONS_H
 #define STATE_MACHINE_FUNCTIONS_H
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
 //Global
 const int MAX_ROWS = 30;
 const int MAX_COLUMNS = 256;
-const int MAX_BUFFER = 100;
+const int MAX_BUFFER = 1000;
 
 //Fill all cells of the array with -1
 void init_table(int _table[][MAX_COLUMNS]);
