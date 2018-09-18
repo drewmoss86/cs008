@@ -20,15 +20,19 @@ class Token
 {
 
 public:
+    //default constructor
     Token();
+    //constructor
     Token(string str, int type);
+    //overloaded insertion operator
     friend ostream& operator <<(ostream& outs, const Token& t);
-    int type();
-    string type_string();
-    string token_str();
+
+    int type();            //initial state value of each state type
+    string type_string();  //string representation of state type
+    string token_str();    //string representation of token
 private:
-    string _token;
-    int _type;
+    string _token;         //string stores token variable
+    int _type;             //integer storing token state value
 };
 
 #endif // TOKEN_H

@@ -12,17 +12,15 @@
 
 /**********************************************************
 *
-*  init_table(): Token Runway
+*  init_table(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method initializes the table values to -1
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  _table[][MAX_COLUMNS] (int) :
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function sets all the values in the 2D array to -1. Returns nothing.
 ***********************************************************/
 void init_table(int _table[][MAX_COLUMNS])
 {
@@ -35,21 +33,18 @@ void init_table(int _table[][MAX_COLUMNS])
     }
 }
 
-//Mark this state (row) with a 1 (success)
 /**********************************************************
 *
-*  mark_success(): Token Runway
+*  mark_success(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method marks the successful rows with a 1 (success)
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  _table[][MAX_COLUMNS] (int) :
-*  state (int)                 :
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
+*  state (int)                 : integer value representing the respective state
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function mark this state (row) with a 1 (success). Returns nothing.
 ***********************************************************/
 void mark_success(int _table[][MAX_COLUMNS], int state)
 {
@@ -57,21 +52,19 @@ void mark_success(int _table[][MAX_COLUMNS], int state)
 
 }
 
-//Mark this state (row) with a 0 (fail)
+//
 /**********************************************************
 *
-*  mark_fail(): Token Runway
+*  mark_fail(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method marks the fail rows with a 0 (fail)
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  _table[][MAX_COLUMNS] (int) :
-*  state (int)                 :
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
+*  state (int)                 : integer value representing the respective state
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function mark this state (row) with a 0 (fail). Returns nothing.
 ***********************************************************/
 void mark_fail(int _table[][MAX_COLUMNS], int state)
 {
@@ -79,21 +72,18 @@ void mark_fail(int _table[][MAX_COLUMNS], int state)
 
 }
 
-//true if state is a success state
 /**********************************************************
 *
-*  is_success(): Token Runway
+*  is_success(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method checks column 0 to find if state is success or fail
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  _table[][MAX_COLUMNS] (int) :
-*  state (int)                 :
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
+*  state (int)                 : integer value representing the respective state
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function returns true if state is a success state, else false.
 ***********************************************************/
 bool is_success(int _table[][MAX_COLUMNS], int state)
 {
@@ -104,24 +94,22 @@ bool is_success(int _table[][MAX_COLUMNS], int state)
     return false;
 }
 
-//Mark a range of cells in the array.
 /**********************************************************
 *
-*  mark_cells(): Token Runway
+*  mark_cells(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
+*  This method initializes the landing time, landing time left,
 *     takeoff time, takeoff time left
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  row (int)                   :
-*  _table[][MAX_COLUMNS] (int) :
-*  from (int)                  :
-*  to (int)                    :
-*  state (int)                 :
+*  row (int)                   : integer representing the row in the table
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
+*  from (int)                  : integer starting column
+*  to (int)                    : integer ending column
+*  state (int)                 : integer value representing the respective state
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function marks a range of cells in the array. Returns nothing.
 ***********************************************************/
 void mark_cells(int row, int _table[][MAX_COLUMNS], int from, int to, int state)
 {
@@ -135,16 +123,16 @@ void mark_cells(int row, int _table[][MAX_COLUMNS], int from, int to, int state)
 //Mark columns represented by the string columns[] for this row
 /**********************************************************
 *
-*  mark_cells(): Token Runway
+*  mark_cells(): Token Class
 *  _________________________________________________________
 *  This constructor initializes the landing time, landing time left,
 *     takeoff time, takeoff time left
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  row (int)                   :
-*  _table[][MAX_COLUMNS] (int) :
-*  columns (char)              :
-*  state (int)                 :
+*  row (int)                   : integer representing the row in the table
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
+*  columns (const char)        : char array containing the values for each state
+*  state (int)                 : integer value representing the respective state
 *
 *  POST-CONDITIONS
 *  This function initializes landing time to t and takeoff time to t.
@@ -153,53 +141,48 @@ void mark_cells(int row, int _table[][MAX_COLUMNS], int from, int to, int state)
 void mark_cells(int row, int _table[][MAX_COLUMNS], const char columns[], int state)
 {
     int index = 0;
-    char ch = ' ';
     while(columns[index] != '\0')
     {
-        ch = columns[index];
-        _table[row][ch] = state;
+        _table[row][columns[index]] = state;
         index++;
 
     }
 }
 
-//Mark this row and column
+//
 /**********************************************************
 *
-*  mark_cell(): Token Runway
+*  mark_cell(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method marks a cell with a state value
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  row (int)                   :
-*  _table[][MAX_COLUMNS] (int) :
-*  column (int)                :
-*  state (int)                 :
+*  row (int)                   : integer representing the row in the table
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
+*  column (int)                : integer representing the column in the table
+*  state (int)                 : integer value representing the respective state
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function marks this row and column (cell) with a state value. Returns
+*    nothing.
 ***********************************************************/
 void mark_cell(int row, int _table[][MAX_COLUMNS], int column, int state)
 {
     _table[row][column] = state;
 }
 
-//This can realistically be used on a small table
 /**********************************************************
 *
-*  print_table(): Token Runway
+*  print_table(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method prints all the values of the 2D array (adjacency table)
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  _table[][MAX_COLUMNS] (int) :
+*  _table[][MAX_COLUMNS] (int) : 2D array of integers
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function prints all the values of the 2D array (adjacency table).
+*    This can realistically be used on a small table. Returns nothing.
 ***********************************************************/
 void print_table(int _table[][MAX_COLUMNS])
 {
@@ -213,23 +196,18 @@ void print_table(int _table[][MAX_COLUMNS])
     }
 }
 
-//show string s and mark this position on the string:
-//hello world   pos: 7
-//      ^
 /**********************************************************
 *
-*  show_string(): Token Runway
+*  show_string(): Token Class
 *  _________________________________________________________
-*  This constructor initializes the landing time, landing time left,
-*     takeoff time, takeoff time left
+*  This method show string s and mark this position on the string
 *  _________________________________________________________
 *  PRE-CONDITIONS
-*  s[] (int)  :
-*  _pos (int) :
+*  s[] (char) : character array
+*  _pos (int) : representing position of the character array
 *
 *  POST-CONDITIONS
-*  This function initializes landing time to t and takeoff time to t.
-*     landing time left and takeoff time left to 0
+*  This function shows string s and mark this position on the string
 ***********************************************************/
 void show_string(char s[], int _pos)
 {

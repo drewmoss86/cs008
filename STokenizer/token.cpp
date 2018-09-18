@@ -97,6 +97,8 @@ string Token::type_string()
     case -1: return "UNKNOWN";
     case 0: return "NUMBER";
     case 10: return "ALPHA";
+    case 14: return "CARRIAGE RETURN";
+    case 17: return "TAB";
     case 20: return "PUNCT";
     case 25: return "SPACE";
     default: return "UNKNOWN";

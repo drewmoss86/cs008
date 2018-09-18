@@ -23,8 +23,8 @@ using namespace std;
 class STokenizer
 {
 public:
-    STokenizer();
-    STokenizer(char str[]);
+    STokenizer();           //default constructor
+    STokenizer(char str[]); //constructor
     bool done();            //true: there are no more tokens
     bool more();            //true: there are more tokens
     //-- big three --
