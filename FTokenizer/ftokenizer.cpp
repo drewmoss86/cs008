@@ -140,9 +140,7 @@ Token FTokenizer::next_token()
     {
         _more = get_new_block();
         _stk >> t;
-
-        return t;
-    }
+s    }
 
     return t;
 
