@@ -13,7 +13,7 @@
 
 
 using namespace std;
-//proto
+//prototype
 void test_f_tokenize_simple();
 
 int main()
@@ -23,10 +23,10 @@ int main()
     return 0;
 }
 void test_f_tokenize_simple(){
-    ofstream outFile;
+    ofstream outFile;  //create output stream object
     Token t;
 
-    outFile.open("tokenOutput.txt");
+    outFile.open("FileTokenOutput.txt");  //added this so I could write output to file
     FTokenizer ftk("solitude.txt");
     ftk>>t;
     int token_count = 0;
@@ -39,6 +39,8 @@ void test_f_tokenize_simple(){
         }
         ftk>>t;
     }
+
+    outFile.close();  //close output file
     cout<<"Tokens Found: "<<token_count<<endl;
     cout<<"=========="<<endl;
 

@@ -20,7 +20,7 @@
 *  fname (char)   : character array storing the filename to be read
 *
 *  POST-CONDITIONS
-*  This constructor
+*  Returns nothing
 ***********************************************************/
 FTokenizer::FTokenizer(char* fname)
 {
@@ -54,7 +54,7 @@ FTokenizer::FTokenizer(char* fname)
 *  none
 *
 *  POST-CONDITIONS
-*
+*  Returns nothing.
 ***********************************************************/
 FTokenizer::~FTokenizer()
 {
@@ -96,7 +96,6 @@ bool FTokenizer::get_new_block()
         _pos += _f.gcount();    //update file position
         _stk.set_string(block); //set block into stokenizern
         delete[] block;         //deallocate character array representing block
-//        return _f.gcount() > 0;
 
     }
 
