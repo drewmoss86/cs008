@@ -1,3 +1,13 @@
+/******************************************
+ * Name: Andrew Moss
+ *
+ * Date: 9/24/2018
+ *
+ * Class: CS 008
+ *
+ * Assignment: FTokenizer
+ *
+ ******************************************/
 #ifndef FTOKENIZER_H
 #define FTOKENIZER_H
 
@@ -6,13 +16,14 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
 
 using namespace std;
 
 class FTokenizer
 {
 public:
-    const int MAX_BLOCK = 500;
+    const int MAX_BLOCK = MAX_BUFFER;
     FTokenizer(char* fname);
     ~FTokenizer();
     Token next_token();
@@ -32,6 +43,7 @@ private:
     bool _more;           //false if last token of the last block
                           //  has been processed and now we are at
                           //  the end of the last block.
+//    char _block[MAX_BLOCK];
 };
 
 #endif // FTOKENIZER_H
