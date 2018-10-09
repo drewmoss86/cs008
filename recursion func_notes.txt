@@ -1,0 +1,264 @@
+R3_first_second("CAT","MAN");
+
+void R3_first_second(first="CAT", second="MAN")
+{
+    string temp;
+    string x;
+    //base case
+    if(first.length() == 0)
+    {
+        cout << second.insert(0,first) << endl;
+    }
+
+    else
+    {
+        temp = first; "CAT"
+        x = temp.at(0); "C"
+        temp.erase(0,1); "AT"
+        temp.insert(1,x); "ACT"
+        R3_first_second(temp="ACT", second="MAN");
+
+    }
+
+}
+
+void R3_first_second(first="ACT", second="MAN")
+{
+    string temp;
+
+    //base case
+    if(first.length() == 0)
+    {
+        cout << first + second << endl;
+    }
+
+    else
+    {
+        temp = first; "ACT"
+        x = temp.at(0); "A"
+        temp.erase(0,1); "CT"
+        temp.insert(2,x); "ATC"
+        R3_first_second(temp="ATC", second="MAN");
+    }
+}
+
+void R3_first_second(first="T", second="MAN")
+{
+    string temp;
+
+    //base case
+    if(first.length() == 0)
+    {
+        cout << first + second << endl;
+    }
+
+    else
+    {
+	first.erase(0,1);
+        R3_first_second("","MAN");
+    }
+}
+
+void R3_first_second(first="", second="MAN")
+{
+    string temp;
+
+    //base case
+    if(first.length() == 0)
+    {
+        cout << first + second << endl;
+    }
+
+    else
+    {
+	first.erase(0,1);
+        R3_first_second("","MAN");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1_levls(1,4)
+
+void R1_levls(start=1, end=4)
+{
+    int num = start;
+    if(num == end)
+        cout << "This was written by call number " << start << "." << endl;
+
+    if(num == 
+    else
+    {
+        cout << right << setw(10*num) << "This was written by call number " << num=1<< "." << endl;
+        R1_levls(2, 4);
+	cout << right << setw(10*num) << "This ALSO written by call number " << start=1 << "." << endl;
+
+
+    }
+}
+
+
+void R1_levls(start=2, end=4)
+{
+    int num = start;
+    if(num == end)
+        cout << "This was written by call number " << start << "." << endl;
+    else
+    {
+        cout << right << setw(10*num) << "This was written by call number " << num=2<< "." << endl;
+        R1_levls(3, 4);
+        cout << right << setw(10*num) << "This ALSO written by call number " << start=2 << "." << endl;
+
+
+    }
+}
+
+void R1_levls(start=3, end=4)
+{
+    int num = start;
+    if(num == end)
+        cout << "This was written by call number " << start << "." << endl;
+    else
+    {
+        cout << right << setw(10*num) << "This was written by call number " << num=1<< "." << endl;
+        R1_levls(4, 4);
+        cout << right << setw(10*num) << "This ALSO written by call number " << start=3 << "." << endl;
+    }
+}
+
+void R1_levls(start=4, end=4)
+{
+    int num = start;
+    if(num < end)
+        cout << "This was written by call number " << start=4 << "." << endl;
+    else
+    {
+        cout << right << setw(10*num) << "This was written by call number " << num=1<< "." << endl;
+        R1_levls(5, 4);
+        cout << right << setw(10*num) << "This ALSO written by call number " << start=4 << "." << endl;
+    }
+
+}
+
+void R1_levls(start=5, end=4)
+{
+    int num = start;
+    if(num > end)
+        cout << "This was written by call number " << num=5 << "." << endl;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+R2_Box("Box:",2);
+
+void R2_Box(prefix="Box:", 2)
+{
+    string s;
+
+    //base case
+    if(levels == 0)
+    {
+        cout << prefix << endl;
+        cout << "base" << endl;
+    }
+
+    else
+    {
+        for(unsigned i = 1; i < 10; i++)
+        {
+            s = prefix;
+            s += char('0' + i);
+            s += ".";
+	    s = "Box:1."
+            R2_Box(s, 1);
+
+        }
+    }
+
+}
+
+void R2_Box(prefix="Box:1.", 1)
+{
+    string s;
+
+    //base case
+    if(levels == 0)
+    {
+        cout << prefix << endl;
+        cout << "base" << endl;
+    }
+
+    else
+    {
+        for(unsigned i = 1; i < 10; i++)
+        {
+            s = prefix;
+            s += char('0' + i);
+            s += ".";
+	    s = "Box:1.1."
+            R2_Box(s, 0); //after printing, increments to next i
+
+        }
+	after printing i < 10, goes back up one level
+    }
+
+}
+
+void R2_Box(prefix="Box:1.1", 0)
+{
+    string s;
+
+    //base case
+    if(levels == 0)
+    {
+        cout << prefix << endl;
+        This is done executing, goes back up one level
+    }
+
+    else
+    {
+        for(unsigned i = 1; i < 10; i++)
+        {
+            s = prefix;
+            s += char('0' + i);
+            s += ".";
+	    s = "Box:1.1."
+            
+
+        }
+    }
+
+}
+

@@ -1,0 +1,13 @@
+FTokenizer
+constructor
+  init _pos
+  init _more bool
+
+  opens file
+
+~FTokenizer
+destructor to close file
+
+get_new_block()
+if end of file is not reached
+   grab new block of test
