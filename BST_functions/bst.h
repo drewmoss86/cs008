@@ -2,6 +2,7 @@
 #define BST_H
 
 #include "tree_node.h"
+#include <cassert>
 #include <iostream>
 
 using namespace std;
@@ -20,22 +21,20 @@ public:
 
  BST(const BST<T>& copy_me)
  {
-     tree_copy(copy_me.root);
+     assert(this != &copy_me);
+     root = tree_copy(copy_me.root);
  }
 
  BST<T>& operator =(const BST<T>& rhs)
  {
      //check if it has already been assigned
-     if(this != &rhs)
-     {
-         tree_copy(rhs.root);
-     }
-
-     return *this;
+     assert(this != &rhs);
+     root = tree_copy(rhs.root);
  }
 
  ~BST()
  {
+     root = nullptr;
      tree_clear(root);
  }
 
@@ -49,7 +48,10 @@ public:
  {
      tree_erase(root, target);
  }
- bool search(const T& target, tree_node<T>* & found_ptr);
+ bool search(const T& target, tree_node<T>* & found_ptr)
+ {
+     return tree_search(root, target, found_ptr);
+ }
 
  friend ostream& operator <<(ostream& outs, const BST<T>& tree)
  {

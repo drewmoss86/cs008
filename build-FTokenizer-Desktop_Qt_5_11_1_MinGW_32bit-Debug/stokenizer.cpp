@@ -80,7 +80,7 @@ bool STokenizer::done()
     //should always be null
     if (_buffer[_pos + 1] == '\0')
     {
-        assert(_buffer[_pos + 1] != '\0');
+        assert(_buffer[_pos + 1] == '\0');
         return true;
     }
 
@@ -281,7 +281,7 @@ void STokenizer::set_string(char str[])
 
     //copy new character array to buffer if end of str has not been reached
     //and is still inbounds
-    while (str[index] > -1 && str[index] != '\0')
+    while (str[index] != '\0')
     {
         _buffer[index] = str[index];  //copy over item by item
         index++;  //increment index
@@ -415,7 +415,6 @@ bool STokenizer::get_token(int start_state, string &token)
             cout << "pos = " << _pos << endl;
             cout << "token = " << token << endl;
         }
-
 
         current_state = next_state;  //move current state to the next state
         _pos++;                      //increment position by 1

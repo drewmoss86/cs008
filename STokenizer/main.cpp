@@ -31,8 +31,8 @@ int main()
     //test cases
     char s[] = "it was the night of october 17th. pi was still 3.14.";
     char s_digit[] = "4";
-    char s_unk[] = "&";
-    char m_unk[] = "&#";
+    char s_unk[] = "ß";
+    char m_unk[] = "ß我";
     char empty[] = "";
     char s_space[] = " ";
     char four_spaces[] = "    ";

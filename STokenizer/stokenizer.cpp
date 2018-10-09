@@ -102,7 +102,8 @@ bool STokenizer::done()
 ***********************************************************/
 bool STokenizer::more()
 {
-    return _pos <= strlen(_buffer);
+    const int SIZE = strlen(_buffer);
+    return _pos <= SIZE;
 }
 
 //
@@ -248,7 +249,14 @@ STokenizer &operator>>(STokenizer &s, Token &t)
 
     else
     {
+        //for debugging
+        if (debug)
+        {
+            cout << "-----\nELSE STATE\n-----" << endl;
+        }
+
         string str(1, s._buffer[s._pos]);  //converts one copy of buffer to string
+
         t = Token(str, -1);  //accounts for unknown characters
 
         //for debugging
@@ -281,7 +289,7 @@ void STokenizer::set_string(char str[])
 
     //copy new character array to buffer if end of str has not been reached
     //and is still inbounds
-    while (str[index] > -1 && str[index] != '\0')
+    while (str[index] != '\0')
     {
         _buffer[index] = str[index];  //copy over item by item
         index++;  //increment index
@@ -308,7 +316,7 @@ void STokenizer::make_table(int _table[][MAX_COLUMNS])
 {
     const bool debug = false;  //for debugging
 
-    init_table(_table); // initialize table to -1
+    init_table(_table); //initialize table to -1
 
     // set double table
     mark_fail(_table, 0);
@@ -386,8 +394,7 @@ bool STokenizer::get_token(int start_state, string &token)
     const bool debug = false;         //turn on/off for debugging
 
     //for debugging
-    if (debug)
-    {
+    if (debug) {
         cout << "START GET TOKEN" << endl;
         cout << "pos = " << _pos << endl;
     }
@@ -415,7 +422,6 @@ bool STokenizer::get_token(int start_state, string &token)
             cout << "pos = " << _pos << endl;
             cout << "token = " << token << endl;
         }
-
 
         current_state = next_state;  //move current state to the next state
         _pos++;                      //increment position by 1

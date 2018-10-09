@@ -95,7 +95,7 @@ string Token::type_string()
     switch(_type)
     {
     case -1: return "UNKNOWN";
-    case 0: return "NUMBER";
+    case 0 : return "NUMBER";
     case 10: return "ALPHA";
     case 14: return "CARRIAGE RETURN";
     case 17: return "TAB";

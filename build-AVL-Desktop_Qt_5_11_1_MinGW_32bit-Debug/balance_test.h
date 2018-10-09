@@ -7,6 +7,7 @@
 #include <random>
 #include <ctime>
 #include <iostream>
+#include <vector>
 #include "avl.h"
 
 using namespace std;
@@ -18,7 +19,7 @@ using namespace std;
 // After each insertion or removal the balance factor will verified.
 void randomBalanceTests()
 {
-    srand(time(0));
+//    srand(time(0));
     const unsigned ATTEMPTS = 1000;
     const unsigned MAX_TREE_SIZE =100;
     bool balanceSuccess = true;
@@ -30,10 +31,11 @@ void randomBalanceTests()
 
     for(unsigned i = 0; i < ATTEMPTS; i++)
     {
+        vector<avl<int>> treeState;
         unsigned treeSize = rand() % MAX_TREE_SIZE;
         unsigned maxValue = treeSize * 10;
         unordered_set<int> dataSet1;
-        AVL<int> theTree;
+        avl<int> theTree;
 
         //insert MAX_TREE_SIZE random, unique values into the data set.
         while(dataSet1.size() < treeSize)
@@ -54,18 +56,36 @@ void randomBalanceTests()
             }
         }
 
+        int counter = 0;
         //remove each item from the AVL.
         for(unordered_set<int>::iterator it = dataSet1.begin(); it != dataSet1.end(); it++)
         {
+//            cout << "counter: " << counter<<endl;
+//            counter++;
+//            avl<int> *temp = new avl<int>(theTree);
+//            treeState.push_back(*temp);
+//            cout /*<< "AVL #: " << i << endl << string(50,'-') << endl
+//                 << "Error: AVL is not balanced." << " after removing: " << *it
+//                 << endl << string(50,'-') << endl*/ << theTree << endl << string(50,'-') << endl;
+
             theTree.erase(*it);
 
-            //check that the avl remains balanced after each deletion.
+//            check that the avl remains balanced after each deletion.
             if(!theTree.isBalanced())
             {
+//                for(avl<int> item : treeState)
+//                {
+//                    cout << " test " << item << endl <<  string(50,'-') << endl;
+
+//                }
+
+//                cout << "counter: " << counter << endl;
+
                 cout << "AVL #: " << i << endl << string(50,'-') << endl
                      << "Error: AVL is not balanced." << " after removing: " << *it
                      << endl << string(50,'-') << endl << theTree << endl << string(50,'-') << endl;
                 balanceSuccess = false;
+
 
             }
         }

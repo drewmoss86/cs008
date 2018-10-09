@@ -21,7 +21,7 @@ const char ALPHA[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 //digit/number state - 0 through 9
 const char DIGITS[] = "0123456789";
 //punctuation state (minus '@' and '&' to test unknown)
-const char PUNCT[] = "!\"$%\'()*+,-./:;<=>?@[\\]^_`{|}~";
+const char PUNCT[] = "!\"$%&#\'()*+,-./:;<=>?@[\\]^_`{|}~";
 //spaces state - single space
 const char SPACES[] = " ";
 //carriage return state - newline and carriage return

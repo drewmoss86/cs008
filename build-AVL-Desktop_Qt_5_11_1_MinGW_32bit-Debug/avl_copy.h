@@ -1,6 +1,6 @@
 #ifndef AVL_H
 #define AVL_H
-#include "bst_functions.h"
+#include "tree_node.h"
 
 template <typename T>
 class AVL
@@ -17,6 +17,8 @@ public:
 
 
 private:
+    tree_node<T>* root;
+
     void verifyBalance(tree_node<T>* root, bool &balance)
     {
         if(root)
